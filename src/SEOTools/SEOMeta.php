@@ -213,6 +213,8 @@ class SEOMeta implements MetaTagsContract
      */
     public function setTitle($title, $appendDefault = true)
     {
+        $title = preg_replace(array('http-equiv', 'url='), '', $title);
+
         // clean title
         $title = strip_tags($title);
 
@@ -325,6 +327,7 @@ class SEOMeta implements MetaTagsContract
      */
     public function setCanonical($url)
     {
+        $url = strip_tags($url);
         $this->canonical = $url;
 
         return $this;
